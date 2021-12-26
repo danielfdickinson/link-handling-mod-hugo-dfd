@@ -1,6 +1,6 @@
 # DFD Hugo Link Handling
 
-A module for handling links in Hugo
+Hugo module with partials and shortcodes for improved link handling, including GitHub compatibility
 
 ## Status
 
