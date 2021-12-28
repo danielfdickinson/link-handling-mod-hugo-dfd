@@ -1,7 +1,7 @@
 baseURL = "https://example.com/"
 copyright = "© 2021 Daniel F. Dickinson"
 defaultContentLanguage = "en"
-homepage = "https://github.com/danielfdickinson/link-handling-mod-hugodfd"
+homepage = "https://github.com/danielfdickinson/link-handling-mod-hugo-dfd"
 enableGitInfo = true
 enableRobotsTXT = true
 summaryLength = 25

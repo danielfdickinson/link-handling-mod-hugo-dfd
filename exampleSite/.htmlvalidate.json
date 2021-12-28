@@ -15,10 +15,6 @@
     ],
     "rules": {
         "svg-focusable": "off",
-        "no-raw-characters": "off",
-        "require-sri": "off",
-        "void-style": "off",
-        "no-trailing-whitespace": "off",
-        "prefer-tbody": "off"
+        "require-sri": "off"
     }
 }
