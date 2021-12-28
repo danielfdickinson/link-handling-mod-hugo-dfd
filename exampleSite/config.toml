@@ -5,6 +5,7 @@ homepage = "https://github.com/danielfdickinson/link-handling-mod-hugodfd"
 enableGitInfo = true
 enableRobotsTXT = true
 summaryLength = 25
+theme = "github.com/danielfdickinson/minimal-test-theme-hugo-dfd"
 
 [params]
   mainSections = ["post","docs"]
@@ -74,6 +75,8 @@ summaryLength = 25
     disabled = true
 
 [module]
+  replacements = "github.com/danielfdickinson/link-handling-mod-hugo-dfd -> ../.."
+
   [[module.imports]]
     path = "github.com/danielfdickinson/link-handling-mod-hugo-dfd"
 
