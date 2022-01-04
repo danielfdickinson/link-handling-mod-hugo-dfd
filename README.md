@@ -1,10 +1,10 @@
 # DFD Hugo Link Handling
 
-Hugo module with partials and shortcodes for improved link handling, including GitHub compatibility
+Hugo module with partials and shortcodes for improved link handling, including GitHub compatibility (page-relative links)
 
 ## Status
 
-TBD
+![build-and-verify](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/actions/workflows/build-and-verify.yml/badge.svg)
 
 ## GitHub Repository
 
