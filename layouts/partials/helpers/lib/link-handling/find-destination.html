@@ -11,8 +11,13 @@
                site root (/ or baseURL))
          2. If nothing matched, we just use the link as it was given to us
     */ -}}
-{{- /* For external (http://, https://, or mailto:) links we just use the link as is */ -}}
-{{- $external := or (hasPrefix $inDestination "http://") (hasPrefix $inDestination "https://") (hasPrefix $inDestination "mailto:") (hasPrefix $inDestination "ftp://") -}}
+{{- /* For external links we just use the link as is */ -}}
+{{- $external := false -}}
+{{- if urls.Parse $inDestination -}}
+    {{- if index (urls.Parse $inDestination).Scheme -}}
+        {{- $external = true -}}
+    {{- end -}}
+{{- end -}}
 {{- $destination := $inDestination -}}
 {{- $tryResource := false -}}
 {{- $isFile := false -}}

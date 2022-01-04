@@ -8,6 +8,7 @@
 {{- $inClass := .class -}}
 {{- $inTarget := .target -}}{{- /* For external links, do NOT use target="_blank" by default (see accessibility page for link to why) */ -}}
 {{- $inRel := .rel -}}
+{{- $inDestinationNoFind := .destinationNoFind -}}
 
 {{- $linkElement := $inLinkElement | default "a" -}}
 {{- $class := $inClass -}}
@@ -21,8 +22,12 @@
 {{- end -}}
 
 {{- $destination := "" -}}
-{{- with $inDestination -}}
-    {{- $destination = partial "helpers/lib/link-handling/find-destination" (dict "page" $inPage "destination" .) -}}
+{{- if ne $inDestinationNoFind true -}}
+    {{- with $inDestination -}}
+        {{- $destination = partial "helpers/lib/link-handling/find-destination" (dict "page" $inPage "destination" .) -}}
+    {{- end -}}
+{{- else -}}
+    {{- $destination = $inDestination -}}
 {{- end -}}
 {{- if eq $linkElement "link" -}}
 <link{{ (partial "helpers/libexec/link-handling/link-attrs" (dict "page" $inPage "destination" $destination "title" $inTitle "class" $inClass "target" $inTarget "rel" $rel)) | safeHTMLAttr -}}>

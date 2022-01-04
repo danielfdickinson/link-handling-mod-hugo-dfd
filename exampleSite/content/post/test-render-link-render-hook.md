@@ -38,3 +38,8 @@ tags:
 [Test of a bare (this page) fragment](#test-of-render-link-render-hook)
 ```
 [Test of a bare (this page) fragment](#test-of-render-link-render-hook)
+
+```html
+{{\< link-special href="/a-nonexistant-internal-link" destinationNoFind="true">}}A non-existant link that would error on build if 'destinationNoFind' was not true (will 404 if you follow it).{{\< /link-special >}}
+```
+{{< link-special href="/a-nonexistant-internal-link" destinationNoFind="true">}}A non-existant link that would error on build if 'destinationNoFind' was not true (will 404 if you follow it).{{< /link-special >}}
