@@ -11,22 +11,25 @@
                site root (/ or baseURL))
          2. If nothing matched, we just use the link as it was given to us
     */ -}}
+{{- $path := "" -}}
+{{- $fragment := "" -}}
 {{- /* For external links we just use the link as is */ -}}
 {{- $external := false -}}
-{{- if urls.Parse $inDestination -}}
-    {{- if index (urls.Parse $inDestination).Scheme -}}
+{{- $destination := $inDestination -}}
+{{- $inUrl := urls.Parse $destination -}}
+{{- with $inUrl -}}
+    {{- if or .Host .Scheme -}}
         {{- $external = true -}}
     {{- end -}}
+    {{- $path = .Path -}}
+    {{- $fragment = .Fragment -}}
+{{- else -}}
+    {{- errorf printf "Unable to parse link destination '%s'" $destination -}}
 {{- end -}}
-{{- $destination := $inDestination -}}
 {{- $tryResource := false -}}
 {{- $isFile := false -}}
 {{- /* We need to know the internal URL without any fragments (e.g. without #an-anchor) */ -}}
 {{- with $inPage -}}
-    {{- $path := (index (split $destination "#") 0) -}}
-    {{- /* In a URL only a single unescaped '#' is valid, so this should work */ -}}
-    {{- $fragment := (index (split $destination "#") 1) -}}
-    {{- /* If we have a URL (not including fragment) */ -}}
     {{- if $path -}}
         {{- if not $external -}}{{- /* only try to find resources for internal links */ -}}
             {{- /* fileExists operates relative to site root not relative to content directory */ -}}
@@ -43,7 +46,6 @@
             {{- else -}}{{- /* Usually a link to an image or other non-page asset */ -}}
                 {{- $isFile = true -}}
             {{- end -}}
-
             {{- if not $isFile -}}
                 {{- if not (or .Data.Singular .Data.Plural .Data.Terms) -}}
                     {{- $tryResource = true -}}
@@ -94,7 +96,7 @@
             {{- if $notFound -}}
                 {{- errorf (print "Couldn't find link '" $path "' for '" .Page.File.Path "'") -}}
             {{- end -}}
-        {{- end -}}            
+        {{- end -}}
     {{- end -}}
 {{- end -}}
 {{- return $destination -}}
