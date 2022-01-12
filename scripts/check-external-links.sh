@@ -8,6 +8,7 @@ http://doi.org/ \
 https://doi.org/ \
 https://www.nature.com/ \
 https://arxiv.org/ \
+/a-nonexistant-internal-link \
 example.net"
 
 SKIPS=""; for skip in ${SKIP_CHECK_PATTERNS}; do SKIPS="${SKIPS}${SKIPS:+ }--skip \"${skip}\""; done ; \
