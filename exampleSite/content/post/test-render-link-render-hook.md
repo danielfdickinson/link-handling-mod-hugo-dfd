@@ -43,3 +43,8 @@ tags:
 {{\< link-special href="/a-nonexistant-internal-link" destinationNoFind="true">}}A non-existant link that would error on build if 'destinationNoFind' was not true (will 404 if you follow it).{{\< /link-special >}}
 ```
 {{< link-special href="/a-nonexistant-internal-link" destinationNoFind="true">}}A non-existant link that would error on build if 'destinationNoFind' was not true (will 404 if you follow it).{{< /link-special >}}
+
+```html
+{{\< link-special href="placeholder" wrapperElement="span">}}A link with a wrapper element.{{\< /link-special >}}
+```
+{{< link-special href="placeholder" wrapperElement="span">}}A link with a wrapper element.{{< /link-special >}}
