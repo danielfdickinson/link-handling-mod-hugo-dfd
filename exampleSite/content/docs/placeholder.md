@@ -8,3 +8,5 @@ categories:
 tags:
     - Placeholder
 ---
+
+[A simple test of a markdown link without an href]()
