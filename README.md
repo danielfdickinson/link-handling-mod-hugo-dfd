@@ -13,7 +13,7 @@ Hugo module with partials and shortcodes for improved link handling, including G
 ## Features
 
 * Handles \<a href="…"> links and \<link …> links.
-* GitHub-compatible Markdown links (e.g. \[A file in the same directory]\(a-file-in-the-same-directory) will work).
+* GitHub-compatible Markdown links (e.g. [A file in the same directory]\(``a-file-in-the-same-directory``) will work).
 * We default to adding only "noopener" to \<a href="…"> links.
 * We do provide a simple mechanism for link only 'untrusted' links ("nofollow noreferrer noopener).
 * We don't (by default) use target="_blank" on external links for reasons described in <https://www.wildtechgarden.ca/blog/accessible-design-no-blank/>.
@@ -22,6 +22,7 @@ Hugo module with partials and shortcodes for improved link handling, including G
 * Full control over generated links when using shortcode, pretty good control of Markdown links through params.
 * Optionally auto-add a wrapper element around the link.
 * Errors build on missing destinations for internal links (prevent internal 404 errors), with some caveats.
+* Avoids creating anchors (\<a>) without an ``href``.
 
 ## Planned
 
@@ -32,30 +33,35 @@ Hugo module with partials and shortcodes for improved link handling, including G
 * TODO: Add the ability to add attributes useful for JavaScript (e.g. ``data``, ``onclick``, etc).
 * REVIEW: Can we enable some checking / getting links from resources on taxonomy / term pages?
 
-## Basic Usage
+## Basic Module Use
 
 ### Importing the Module
 
 1. The first step to making use of this module is to add it to your site or theme.  In your configuration file:
-
    ``config.toml``
+
    ```toml
    [module]
      [[module.imports]]
        path = "github.com/danielfdickinson/link-handling-mod-hugo-dfd"
    ```
+
    OR
    ``config.yaml``
+
    ```yaml
    module:
      imports:
        - path: github.com/danielfdickinson/link-handling-mod-hugo-dfd
    ```
+
 2. Execute
+
    ```bash
    hugo mod get github.com/danielfdickinson/link-handling-mod-hugo-dfd
    hugo mod tidy
    ```
+
 ## Using the Layouts/Shortcode
 
 ### Common For All Links Handled By This Module
@@ -76,7 +82,7 @@ Mostly you'll do this without thinking about it as the defaults will make sense.
 
 ##### Special Case
 
-As a special feature for markdown such as \[]\(https://example.com) (that is a link with no text), add "nofollow noreferrer noopener". This provides an easy way to add 'untrusted' external links.
+As a special feature for markdown such as []\(``https://example.com``) (that is a link with no text), add ``"nofollow noreferrer noopener"``. This provides an easy way to add 'untrusted' external links.
 
 If you need text and untrusted links, you will need the "link-special" shortcode.
 
@@ -86,7 +92,7 @@ All params may be set at the site or per-page level.
 
 | Param | Default | Description |
 |-------|---------|-------------|
-| linkDefaultRelMarkdown | _(none*)_ | Default "rel=" for Markdown links is no setting (meaning the same as any link from this module, which is "noopener"). _*_ As mentioned in the [Special Case](#special-case) section links with no text get "nofollow noreferrer noopener" by default. |
+| linkDefaultRelMarkdown | _(none*)_ | Default "rel=" for Markdown links is no setting (meaning the same as any link from this module, which is "noopener"). _Note_: As mentioned in the [Special Case](#special-case) section links with no text get "nofollow noreferrer noopener" by default. |
 | linkDefaultNoFindMarkdown | _(none)_ | If set to true, skip checking if internal links exist and/or finding resources. **NB** This means, if true, that links page resources in a page bundle will _not_ be found for Markdown links. |
 | linkWrapperElement | span | By default wrap Markdown links in span elements. Using "none" for this will omit the wrapper element. **NOTE** Replacing this by div can cause validation errors as often links in Markdown end up inside paragraph \<p> elements and div inside p is not allowed. |
 | wrapperClass | "link-wrapper-demo-site" | Default "class=" for the wrapper element around the link (e.g. default span, per above). It is recommended to set this in your config as suits your CSS. |
@@ -94,24 +100,23 @@ All params may be set at the site or per-page level.
 
 ### Use the "link-special" Shortcode
 
-#### Basic Usage
+#### Basic Use of the "link-special" Shortcode
 
 **NB** You can't mix positional (unnamed) parameters with named parameters, so the first two examples will only work when the only parameter is a the destination.
 
-``\{{\< link-special "/path/to/an/internal/destination" >}}link text\{{\< /link-special >}}`` (external destinations are also valid).
+``{{< link-special "/path/to/an/internal/destination" >}}link text{{< /link-special >}}`` (external destinations are also valid).
 
 OR
 
-``\{{\< link-special "/path/to/an/internal/destination" />}}`` (external destinations are also valid).
+``{{< link-special "/path/to/an/internal/destination" />}}`` (external destinations are also valid).
 
 OR
 
-``\{{\< link-special href="/path/to/an/internal/destination" >}}link text\{{\< /link-special >}}`` (external destinations are also valid).
+``{{< link-special href="/path/to/an/internal/destination" >}}link text{{< /link-special >}}`` (external destinations are also valid).
 
 OR
 
-
-``\{{\< link-special href="/path/to/an/internal/destination" />}}`` (external destinations are also valid).
+``{{< link-special href="/path/to/an/internal/destination" />}}`` (external destinations are also valid).
 
 #### Other Parameters for the Shortcode
 
