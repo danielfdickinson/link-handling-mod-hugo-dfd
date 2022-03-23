@@ -39,6 +39,7 @@ jobs:
       matrix:
         hugo: ["0.80.0", "0.88.1", "latest"]
     steps:
+      - uses: actions/checkout@v2
       - name: "Validate exampleSite HTML"
         uses: danielfdickinson/validate-html-action-hugo-dfd@v0.2.2-beta.1
         with:
