@@ -1,0 +1,11 @@
+{{- $ctx := . -}}
+{{- $curPage := .Page -}}
+{{- with $curPage.Params.imageWrapLink -}}
+<a href="{{ . }}">
+   {{- with $ctx -}}
+   <img {{ with .Text }}alt="{{ . }}" {{ end }}{{ with .Destination }}src="{{ . }}"{{ end }}{{ with .Title }} title="{{ . }}"{{ end }}>
+   {{- end -}}
+</a>
+{{- else -}}
+   <img {{ with .Text }}alt="{{ . }}" {{ end }}{{ with .Destination }}src="{{ . }}"{{ end }}{{ with .Title }} title="{{ . }}"{{ end }}>
+{{- end -}}
