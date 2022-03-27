@@ -123,9 +123,9 @@ OR
 | Shortcode Param | Default | Description |
 |-----------------|---------|-------------|
 | title | _(none)_ | "title=" attribute |
-| rel | _(none*)_ | "rel=" attribute (see above for default for all links) |
+| rel | _(none)_ | "rel=" attribute (see above for default for all links) |
 | target | _(none)_ | "target=" attribute |
-| linkElement | _(none*)_ | a or link — tag for link. Default is an 'anchor' (\<a href="…">) tag through the default for all links |
+| linkElement | _(none)_ | a or link — tag for link. Default is an 'anchor' (\<a href="…">) tag through the default for all links |
 | linkClass | _(none)_ | "class=" attribute for link itself |
 | wrapperElement | _(none)_ | Element for optional wrapper |
 | wrapperClass | _(none)_ | "class=" element for optional wrapper |
