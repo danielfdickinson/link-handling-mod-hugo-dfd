@@ -76,6 +76,9 @@
             {{- $destResource = .Resources.GetMatch (printf "*%s*" (path.Base $path)) -}}
         {{- end -}}
         {{- if not $destResource -}}
+            {{- $destResource = .GetPage $path -}}
+        {{- end -}}
+        {{- if not $destResource -}}
             {{- $destResource = .Site.GetPage $path -}}
         {{- end -}}
         {{- if $destResource -}}
