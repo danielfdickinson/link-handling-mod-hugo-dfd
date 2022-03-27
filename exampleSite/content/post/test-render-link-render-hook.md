@@ -27,10 +27,16 @@ tags:
 [A test of a valid filename and a fragment (also go to accessibility goals)](../../accessibility.md#goals)
 
 ```markdown
-[A test of pointing to a relative directory](../../post)
+[A test of pointing to a parent directory of this page](../post)
 ```
 
-[A test of pointing to a relative directory](../../post)
+[A test of pointing to a parent directory of this page](../post)
+
+```markdown
+[A test of pointing to a relative directory beside this page's parent directory](../../docs)
+```
+
+[A test of pointing to a relative directory beside this page's parent directory](../../docs)
 
 ```markdown
 [A test of pointing to an absolute directory](/post)
