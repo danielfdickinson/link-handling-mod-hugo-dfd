@@ -37,6 +37,7 @@
         {{- if not $external -}}{{- /* only try to find resources for internal links */ -}}
             {{- $filePath := "" -}}
             {{- if .File -}}
+                {{- /* FIXME: allow to use content dirs other than /content */ -}}
                 {{- /* fileExists operates relative to site root not relative to content directory */ -}}
                 {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) (.File.Path) $path) -}}{{- /* For links relative to the current page */ -}}
                 {{- if hasPrefix $path "/" -}}{{- /* For links relative to the output site root (e.g. /post/some-post) */ -}}
