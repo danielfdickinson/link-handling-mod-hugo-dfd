@@ -40,8 +40,8 @@
                 {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) (.File.Path) $path) -}}{{- /* For links relative to the current page */ -}}
                 {{- if hasPrefix $path "/" -}}{{- /* For links relative to the output site root (e.g. /post/some-post) */ -}}
                     {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) $path) -}}
-                {{- else -}}
-                    {{- $filePath = path.Join "/content" (.Site.LanguagePrefix) (.File.Path) ".." $path -}}
+                {{- else if .IsSection -}}
+                    {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) ".." $path) -}}
                 {{- end -}}
                 {{- if not (fileExists $filePath) -}}
                     {{- if or (fileExists (printf "%s.md" $filePath)) (fileExists (path.Join $filePath "_index.md")) (fileExists (path.Join $filePath "index.md")) -}}{{- /* Check if it is a Markdown content page */ -}}
