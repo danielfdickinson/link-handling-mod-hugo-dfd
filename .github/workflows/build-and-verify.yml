@@ -55,12 +55,15 @@ jobs:
   check-links:
     needs: build-unminified-site
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        hugo: ["0.80.0", "0.88.1", "latest"]
     steps:
       - name: "Check internal links"
         uses: danielfdickinson/link-check-action-hugo-dfd@v0.2
         with:
           canonical-root: https://example.com/
-          download-site-as: unminified-site-latest
+          download-site-as: unminified-site-${{ matrix.hugo }}
           upload-logs-as: check-links-failure
           upload-logs-retention: 3
           skip-check-patterns: "https://www.facebook.com/sharer.php https://www.linkedin.com/shareArticle https://linkedin.com/shareArticle https://twitter.com/share https://www.pexels.com https://pixabay.com http://doi.org/ https://doi.org/ https://www.nature.com/ https://arxiv.org/ https://cbc.ca https://www.cbc.ca /a-nonexistant-internal-link example.com example.net"
