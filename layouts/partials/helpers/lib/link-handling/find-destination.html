@@ -39,12 +39,12 @@
             {{- if .File -}}
                 {{- /* FIXME: #28 allow to use content dirs other than /content */ -}}
                 {{- /* fileExists operates relative to site root not relative to content directory */ -}}
-                {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) (.File.Path) $path) -}}{{- /* For links relative to the current page */ -}}
+                {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) (strings.TrimSuffix (path.Ext (.File.Path)) (.File.Path)) $path) -}}{{- /* For links relative to the current page */ -}}
                 {{- if hasPrefix $path "/" -}}{{- /* For links relative to the output site root (e.g. /post/some-post) */ -}}
                     {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) $path) -}}
                 {{- else if .Parent -}}
                     {{- if not .Parent.IsHome -}}
-                        {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) (.File.Path) ".." $path) -}}
+                        {{- $filePath = (path.Join "/content" (.Site.LanguagePrefix) (strings.TrimSuffix (path.Ext (.File.Path)) (.File.Path)) ".." $path) -}}
                     {{- end -}}
                 {{- end -}}
                 {{- if not (fileExists $filePath) -}}
