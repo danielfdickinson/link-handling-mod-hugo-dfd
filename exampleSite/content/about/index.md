@@ -9,4 +9,6 @@ tags:
     - Site Information
 ---
 
-Placeholder for a real about page
+Demo site for a [Hugo](https://gohugo.io/) [module](https://gohugo.io/hugo-modules/) for adding responsive images handling to themes, sites, or other modules.
+
+See the [documentation from the README](docs/readme) for more information, or see [posts](post) for some bare-bones usage samples.  (On an actual site you would of course spruce things up with more/better CSS).
