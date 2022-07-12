@@ -8,6 +8,7 @@ summaryLength = 25
 theme = "github.com/danielfdickinson/minimal-test-theme-hugo-dfd"
 
 [params]
+    author = "Daniel F. Dickinson"
     mainSections = ["post","docs"]
     # Footnotes and TableOfContents don't work properly with a base href set in <head>
     useBaseURL = true
@@ -35,15 +36,10 @@ theme = "github.com/danielfdickinson/minimal-test-theme-hugo-dfd"
             url = "/accessibility/" # We need to use URL because we support Hugo from 0.80.0
             weight = 20
 
-[author]
+[[ author.authors ]]
     name = "Daniel F. Dickinson"
     homepage = "https://www.wildtechgarden.ca/about/"
     email = "dfdpublic@wildtechgarden.ca"
-
-    [[ author.authors ]]
-        name = "Daniel F. Dickinson"
-        homepage = "https://www.wildtechgarden.ca/about/"
-        email = "dfdpublic@wildtechgarden.ca"
 
 [taxonomies]
     category = "categories"

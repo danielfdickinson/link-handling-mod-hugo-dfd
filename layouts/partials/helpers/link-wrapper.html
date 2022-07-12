@@ -25,7 +25,7 @@
 {{- else if eq $wrapperElement "span" -}}
 <span{{ with $inWrapperClass }} class="{{ . }}"{{ end }}>
 {{- end }}
-{{- /* dict all on one line as we support Hugo 0.80.0 and multi-line support requires 0.88.1 or higher */ -}}
+{{- /* dict all on one line as we support Hugo 0.80.0 and multi-line support requires 0.81.0 or higher */ -}}
 {{- /* REVIEW: We could improve readability by merging the items in one
      * a line at a time, but it might impact performance. Investigate.
      */ -}}

@@ -16,6 +16,6 @@
 {{- $wrapperClass := .Page.Params.linkWrapperClassMarkdown | default .Page.Site.Params.linkWrapperClassMarkdown | default "link-wrapper-demo-site" -}}
 {{- $linkClass := .Page.Params.linkClassMarkdown | default .Page.Site.Params.linkClassMarkdown | default "link-markdown-demo-site" -}}
 
-{{- /* dict all on one line as we support Hugo 0.80.0 and multi-line support requires 0.88.1 or higher */ -}}
+{{- /* dict all on one line as we support Hugo 0.80.0 and multi-line support requires 0.81.0 or higher */ -}}
 {{- partial "helpers/link-wrapper" (dict "page" .Page "destination" .Destination "title" .Title "text" .Text "rel" $rel "wrapperClass" $wrapperClass "linkClass" $linkClass "wrapperElement" $wrapperElement "destinationNoFind" $destinationNoFind) -}}
 {{- /* Drop trailing newlines */ -}}
