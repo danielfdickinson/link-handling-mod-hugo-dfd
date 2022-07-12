@@ -1,33 +1,12 @@
+{{- /* We now use this to enable GitHub-compatibiity as well as to find resources and get the proper link when using them. We no longer check all internal links for existance in this partial. That was too error-prone, complex, and fragile. */ -}}
 {{- $ctx := . -}}
 {{- $inPage := .page -}}
 {{- $inDestination := .destination -}}
-{{- /* For internal links we:
-         1. Check if the link points to a file
-            a. If it does, we find the relLangURL (that is the URL of the page relative
-            the to site root (/ or baseURL))
-            b. If it does not and the page is not a taxonomy or term page,
-               we check for any assets (site-wide .Resources) or
-               page resources that match the link (e.g. from a page bundle)
-               i. If there are we use the asset's relative permalink (again relative to
-               site root (/ or baseURL))
-         2. If nothing matched, we stop the build with an error.
-    */ -}}
-{{- $path := "" -}}
-{{- $fragment := "" -}}
-{{- /* For external links we just use the link as is */ -}}
-{{- $external := false -}}
 {{- $destination := $inDestination -}}
-{{- $inUrl := urls.Parse $destination -}}
-{{- with $inUrl -}}
-    {{- /* We treat absolute URLs (that include http/https/mailto/etc and/or host) as external */ -}}
-    {{- if or .Host .Scheme -}}
-        {{- $external = true -}}
-    {{- end -}}
-    {{- $path = .Path -}}
-    {{- $fragment = .Fragment -}}
-{{- else -}}
-    {{- errorf printf "Unable to parse link destination '%s'" $destination -}}
-{{- end -}}
+{{- $externalResult := partial "helpers/lib/link-handling/is-external.html" $destination -}}
+{{- $external := $externalResult.external -}}
+{{- $path := $externalResult.path -}}
+{{- $fragment := $externalResult.fragment -}}
 {{- $tryStatic := false -}}
 {{- $tryResource := false -}}
 {{- $tryPaths := (slice) -}}
@@ -54,7 +33,7 @@
                 {{ $tryPaths = $tryPaths | append $baseTry -}}
                 {{- if eq (path.Ext $baseTry) "" -}}
                     {{- $tryPaths = $tryPaths | append (path.Join $baseTry "index.md") -}}
-                    {{- $tryPaths = $tryPaths | append (path.Join $baseTry "_ index.md") -}}
+                    {{- $tryPaths = $tryPaths | append (path.Join $baseTry "_index.md") -}}
                 {{- end -}}
             {{- end -}}
             {{- if and (path.Ext $path) (ne (path.Ext $path) ".md") -}}
@@ -94,36 +73,7 @@
                         {{- $destination = printf "%s/#%s" (strings.TrimSuffix "/" $destination) $fragment -}}
                     {{- end -}}
                 {{- end -}}
-                {{- $notFound = false -}}
             {{- end -}}
-            {{- if not $destResource -}}
-                {{- /* HACK: Omit Sitemap and RSS feeds from 'not found' */ -}}
-                {{- /* TODO: #23 Check if sitemap or feeds are being created and only omit from 'not found' if they are. */ -}}
-                {{- if or (eq (path.Base $path) "index.xml") (eq (path.Base $path) "sitemap.xml") -}}
-                    {{- $notFound = false -}}
-                {{- end -}}
-                {{- /* HACK: Omit taxonomies and terms from 'not found' */ -}}
-                {{- /* TODO: #24 Only omit taxonomies and/or terms that are actually being generated. */ -}}
-                {{- range $taxonomyName, $taxonomy := site.Taxonomies -}}
-                    {{- if or (hasPrefix $path $taxonomyName) (hasPrefix $path (printf "/%s" $taxonomyName)) -}}
-                        {{- $notFound = false -}}
-                    {{- end -}}
-                {{- end -}}
-                {{- /* Try a last ditch check of '/static' */ -}}
-                {{- $staticFile := path.Join "/static" $path -}}
-                {{- if fileExists $staticFile -}}
-                    {{- $notFound = false -}}
-                {{- end -}}
-            {{- end -}}
-        {{- else -}}
-            {{- $notFound = false -}}
-        {{- end -}}
-    {{- end -}}
-    {{- if $notFound -}}
-        {{- if $inPage.File -}}
-            {{- errorf (print "Couldn't find link '" (index $tryPaths 0) "' for '" $inPage.File.Path "'") -}}
-        {{- else -}}
-            {{- errorf (print "Couldn't find link '" (index $tryPaths 0) "' for '" $inPage.Title "'") -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}

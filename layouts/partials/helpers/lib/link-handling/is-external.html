@@ -1,0 +1,17 @@
+{{- $destination := . -}}
+{{- $path := "" -}}
+{{- $fragment := "" -}}
+{{- $external := false -}}}
+{{- $inUrl := urls.Parse $destination -}}
+{{- with $inUrl -}}
+    {{- /* We treat absolute URLs (that include http/https/mailto/etc and/or host) as external */ -}}
+    {{- if or .Host .Scheme -}}
+        {{- $external = true -}}
+    {{- end -}}
+    {{- $path = .Path -}}
+    {{- $fragment = .Fragment -}}
+{{- else -}}
+    {{- errorf printf "Unable to parse link destination '%s'" $destination -}}
+{{- end -}}
+{{- return (dict "external" $external "path" $path "fragment" $fragment) -}}
+{{- /* Remove trailing newlines */ -}}
