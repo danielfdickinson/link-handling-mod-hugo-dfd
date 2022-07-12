@@ -128,11 +128,9 @@ OR
 ## Contributions welcome
 
 [Our current TODO/FIXME items](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
 [Items further filtered by 'good first issue'](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement+label%3A%22good+first+issue%22)
 
-### Contributions not noted in source code
+### Of special interest
 
-* TODO: #31 Can we enable some checking / getting links from resources on taxonomy / term pages?
-* TODO: #32 Refactor partials directory structure to use self-explanatory dir names
-* TODO: #33 Have a real test regime for the various features and expected behaviours, and get to 70% coverage
-* REVIEW: #34 Maybe integrate with 'image-handling' module and (possibly) keep this module for the href/src/finding parts.
+* TODO: [#33](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/issues/33) Have a real test regime for the various features and expected behaviours, and get to 70% coverage
