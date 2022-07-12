@@ -10,6 +10,10 @@ Hugo module with partials and shortcodes for improved link handling, including G
 
 <https://github.com/danielfdickinson/link-handling-mod-hugo-dfd>
 
+## Sample site
+
+<https://link-handling-mod.wildtechgarden.ca>
+
 ## Features
 
 * Handles \<a href="…"> links and \<link …> links.
