@@ -138,3 +138,7 @@ OR
 ### Of special interest
 
 * TODO: [#33](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/issues/33) Have a real test regime for the various features and expected behaviours, and get to 70% coverage
+
+## Support and general questions
+
+Please use [GitHub Discussions](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/discussions) for support and general questions.
