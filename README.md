@@ -97,19 +97,19 @@ All params may be set at the site or per-page level.
 
 **NB** You can't mix positional (unnamed) parameters with named parameters, so the first two examples will only work when the only parameter is a the destination.
 
-``{{\< link-special "/path/to/an/internal/destination" >}}link text{{\< /link-special >}}`` (external destinations are also valid).
+``{{</* link-special "/path/to/an/internal/destination" */>}}link text{{</* /link-special */>}}`` (external destinations are also valid).
 
 OR
 
-``{{\< link-special "/path/to/an/internal/destination" />}}`` (external destinations are also valid).
+``{{</* link-special "/path/to/an/internal/destination" / */>}}`` (external destinations are also valid).
 
 OR
 
-``{{\< link-special href="/path/to/an/internal/destination" >}}link text{{\< /link-special >}}`` (external destinations are also valid).
+``{{</* link-special href="/path/to/an/internal/destination" */>}}link text{{</* /link-special */>}}`` (external destinations are also valid).
 
 OR
 
-``{{\< link-special href="/path/to/an/internal/destination" />}}`` (external destinations are also valid).
+``{{</* link-special href="/path/to/an/internal/destination" / */>}}`` (external destinations are also valid).
 
 #### Other parameters for the shortcode
 
