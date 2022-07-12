@@ -85,6 +85,7 @@ All params may be set at the site or per-page level.
 
 | Param | Default | Description |
 |-------|---------|-------------|
+| emptyElementStyle | _(none)_ | If this is 'self-close' \<link> elements are self-closed (e.g. \<link rel="https://example.com" />) |
 | linkDefaultRelMarkdown | _(none*)_ | Default "rel=" for Markdown links is no setting (meaning the same as any link from this module, which is "noopener"). _Note_: As mentioned in the [Special Case](#special-case) section links with no text get "nofollow noreferrer noopener" by default. |
 | linkDefaultNoFindMarkdown | _(none)_ | If set to true, skip checking if internal links exist and/or finding resources. **NB** This means, if true, that links page resources in a page bundle will _not_ be found for Markdown links. |
 | linkWrapperElement | span | By default wrap Markdown links in span elements. Using "none" for this will omit the wrapper element. **NOTE** Replacing this by div can cause validation errors as often links in Markdown end up inside paragraph \<p> elements and div inside p is not allowed. |

@@ -31,8 +31,8 @@
 {{- if .destination -}}
     {{- /* dict all on one line as we support Hugo 0.80.0 and multi-line support requires 0.88.1 or higher */ -}}
     {{- if eq $linkElement "link" -}}
-    {{- /* TODO: #26 Add option for self-closing <link> elements */ -}}
-    <link{{ (partial "helpers/libexec/link-handling/link-attrs" (dict "page" $inPage "destination" $destination "title" $inTitle "class" $inClass "target" $inTarget "rel" $rel)) | safeHTMLAttr -}}>
+       {{- $self_close := eq ( $inPage.Params.emptyElementStyle | default $inPage.Site.arams.emptyElementStyle ) "self-close" -}}
+    <link{{ (partial "helpers/libexec/link-handling/link-attrs" (dict "page" $inPage "destination" $destination "title" $inTitle "class" $inClass "target" $inTarget "rel" $rel)) | safeHTMLAttr -}}{{ if $self_close }} /{{ end}}>
     {{- else if eq $linkElement "a" -}}
        {{- $defaultExternalTarget := $inPage.Params.linkDefaultExternalTarget | default $inPage.Site.Params.linkDefaultExternalTarget | default "" -}}
        {{- $external := (partial "helpers/lib/link-handling/is-external.html" $destination).external -}}
