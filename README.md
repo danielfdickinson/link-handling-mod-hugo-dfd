@@ -16,7 +16,8 @@ Hugo module with partials and shortcodes for improved link handling, including G
 * GitHub-compatible Markdown links (e.g. [A file in the same directory]\(``a-file-in-the-same-directory``) will work).
 * We default to adding only "noopener" to \<a href="…"> links.
 * We do provide a simple mechanism for link only 'untrusted' links ("nofollow noreferrer noopener).
-* We don't (by default) use target="_blank" on external links for reasons described in <https://www.wildtechgarden.ca/blog/accessible-design-no-blank/>.
+* We don't (by default) use target="_blank" on external links for reasons described in <https://www.wildtechgarden.ca/blog/accessible-design-no-blank/>, but the module user
+can modify this default.
 * Avoids allowing arbitrary HTML (which reduces the opportunites for malicious content contributors to insert malicious code).
 * Allows opening the link tag without closing in this module for more complex links (e.g. not just text). (Obviously the tag still needs to be closed, but this leaves the details up to you).
 * Full control over generated links when using shortcode, pretty good control of Markdown links through params.
@@ -66,6 +67,7 @@ All params may be set at the site or per-page level.
 | linkWrapperDefault | _(none)_ | Element to wrap around link element. Default for non-Markdown is no wrapper. For Markdown see the [Using Markdown Links](#using-markdown-links) section. |
 | linkDefaultRel | "noopener" | Default "rel=" for any link created by this module. |
 | linkLinkDefaultRel | _(none)_ | Override default "rel=" for \<link> elements. Default it to drop the "noopener" since it doesn't apply to \<link> elements. |
+| linkDefaultExternalTarget | _(none)_ | Allows to configure the default for 'target=', for external 'a href', for example 'target="_blank"' is popular to open a new tab for an external link (although [we believe this is a bad for users](https://wildtechgarden.ca/blog/accessible-design-no-blank/)) |
 
 #### Using Markdown links
 

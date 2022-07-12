@@ -6,7 +6,7 @@
 {{- $inLinkElement := .linkElement -}}
 {{- $inClose := .close -}}
 {{- $inClass := .class -}}
-{{- $inTarget := .target -}}{{- /* For external links, do NOT use target="_blank" by default (see accessibility page for link to reasoning) */ -}}
+{{- $inTarget := .target -}}{{- /* For external links, do NOT use target="_blank" by default, but you can set your own default */ -}}
 {{- $inRel := .rel -}}
 {{- $inDestinationNoFind := .destinationNoFind -}}
 {{- $linkElement := $inLinkElement | default "a" -}}
@@ -34,7 +34,13 @@
     {{- /* TODO: #26 Add option for self-closing <link> elements */ -}}
     <link{{ (partial "helpers/libexec/link-handling/link-attrs" (dict "page" $inPage "destination" $destination "title" $inTitle "class" $inClass "target" $inTarget "rel" $rel)) | safeHTMLAttr -}}>
     {{- else if eq $linkElement "a" -}}
-    <a{{ (partial "helpers/libexec/link-handling/link-attrs" (dict "page" $inPage "destination" $destination "title" $inTitle "class" $inClass "target" $inTarget "rel" $rel)) | safeHTMLAttr -}}>
+       {{- $defaultExternalTarget := $inPage.Params.linkDefaultExternalTarget | default $inPage.Site.Params.linkDefaultExternalTarget | default "" -}}
+       {{- $external := (partial "helpers/lib/link-handling/is-external.html" $destination).external -}}
+       {{- $target := $inTarget -}}
+       {{- if and $external (not $target) -}}
+           {{- $target = $defaultExternalTarget -}}
+       {{- end -}}
+    <a{{ (partial "helpers/libexec/link-handling/link-attrs" (dict "page" $inPage "destination" $destination "title" $inTitle "class" $inClass "target" $target "rel" $rel)) | safeHTMLAttr -}}>
     {{- end -}}
     {{- if $doClose -}}
         {{- if $inText -}}
