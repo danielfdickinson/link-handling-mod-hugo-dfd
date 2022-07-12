@@ -1,5 +1,5 @@
 ---
-title: "Hugo DFD Link Handling README"
+title: "Hugo DFD link handling README"
 author: Daniel F. Dickinson
 categories:
     - Documentation

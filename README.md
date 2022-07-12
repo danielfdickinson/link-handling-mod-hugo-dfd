@@ -1,4 +1,4 @@
-# DFD Hugo Link Handling
+# DFD Hugo link handling
 
 Hugo module with partials and shortcodes for improved link handling, including GitHub compatibility (page-relative links)
 
@@ -6,7 +6,7 @@ Hugo module with partials and shortcodes for improved link handling, including G
 
 ![build-and-verify](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/actions/workflows/build-and-verify.yml/badge.svg)
 
-## GitHub Repository
+## GitHub repository
 
 <https://github.com/danielfdickinson/link-handling-mod-hugo-dfd>
 
@@ -24,9 +24,9 @@ Hugo module with partials and shortcodes for improved link handling, including G
 * Errors build on missing destinations for internal links (prevent internal 404 errors), with some caveats.
 * Avoids creating anchors (\<a>) without an ``href``.
 
-## Basic Module Use
+## Basic module use
 
-### Importing the Module
+### Importing the module
 
 1. The first step to making use of this module is to add it to your site or theme.  In your configuration file:
    ``config.toml``
@@ -53,11 +53,11 @@ Hugo module with partials and shortcodes for improved link handling, including G
    hugo mod tidy
    ```
 
-## Using the Layouts/Shortcode
+## Using the layouts/shortcode
 
-### Common For All Links Handled By This Module
+### Common for all links handled by this module
 
-#### Params Controlling Link Finding/Output
+#### Params controlling link finding/output
 
 All params may be set at the site or per-page level.
 
@@ -67,17 +67,17 @@ All params may be set at the site or per-page level.
 | linkDefaultRel | "noopener" | Default "rel=" for any link created by this module. |
 | linkLinkDefaultRel | _(none)_ | Override default "rel=" for \<link> elements. Default it to drop the "noopener" since it doesn't apply to \<link> elements. |
 
-#### Using Markdown Links
+#### Using Markdown links
 
 Mostly you'll do this without thinking about it as the defaults will make sense. There are options for when you need them however.
 
-##### Special Case
+##### Special case
 
 As a special feature for markdown such as []\(``https://example.com``) (that is a link with no text), add ``"nofollow noreferrer noopener"``. This provides an easy way to add 'untrusted' external links.
 
 If you need text and untrusted links, you will need the "link-special" shortcode.
 
-##### Params to Modify Markdown Links
+##### Params to modify Markdown links
 
 All params may be set at the site or per-page level.
 
@@ -89,9 +89,9 @@ All params may be set at the site or per-page level.
 | wrapperClass | "link-wrapper-demo-site" | Default "class=" for the wrapper element around the link (e.g. default span, per above). It is recommended to set this in your config as suits your CSS. |
 | linkClassMarkdown | "link-markdown-demo-site" | Default "class=" for the actual link created from the Markdown. It is recommended to set this in your config as suits your CSS. |
 
-### Use the "link-special" Shortcode
+### Use the "link-special" shortcode
 
-#### Basic Use of the "link-special" Shortcode
+#### Basic Use of the "link-special" shortcode
 
 **NB** You can't mix positional (unnamed) parameters with named parameters, so the first two examples will only work when the only parameter is a the destination.
 
@@ -109,7 +109,7 @@ OR
 
 ``{{\< link-special href="/path/to/an/internal/destination" />}}`` (external destinations are also valid).
 
-#### Other Parameters for the Shortcode
+#### Other parameters for the shortcode
 
 | Shortcode Param | Default | Description |
 |-----------------|---------|-------------|
