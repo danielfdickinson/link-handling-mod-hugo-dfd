@@ -4,7 +4,7 @@ Hugo module with partials and shortcodes for improved link handling, including G
 
 ## Status
 
-![build-and-verify](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/actions/workflows/build-and-verify.yml/badge.svg)
+[![build-and-verify](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/actions/workflows/build-and-verify.yml/badge.svg)](https://github.com/danielfdickinson/link-handling-mod-hugo-dfd/actions/workflows/build-and-verify.yml)
 
 ## GitHub repository
 
