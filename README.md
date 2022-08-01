@@ -20,7 +20,7 @@ Hugo module with partials and shortcodes for improved link handling, including G
 * GitHub-compatible Markdown links (e.g. [A file in the same directory]\(``a-file-in-the-same-directory``) will work).
 * We default to adding only "noopener" to \<a href="…"> links.
 * We do provide a simple mechanism for link only 'untrusted' links ("nofollow noreferrer noopener).
-* We don't (by default) use target="_blank" on external links for reasons described in <https://www.wildtechgarden.ca/blog/accessible-design-no-blank/>, but the module user
+* We don't (by default) use target="_blank" on external links for reasons described in <https://wildtechgarden.ca/blog/accessible-design-no-blank/>, but the module user
 can modify this default.
 * Avoids allowing arbitrary HTML (which reduces the opportunites for malicious content contributors to insert malicious code).
 * Allows opening the link tag without closing in this module for more complex links (e.g. not just text). (Obviously the tag still needs to be closed, but this leaves the details up to you).
